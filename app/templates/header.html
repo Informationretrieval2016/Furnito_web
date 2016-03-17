@@ -35,7 +35,7 @@
                     	&nbsp;
                     </div>
                     <div class="srch-container">
-                    <form action="{{ url_for('result') }}" method="post">
+                    <form action="{{ url_for('result',page = 1) }}" method="post">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="{{search_query}}" name="srch-term" id="srch-term">
                                 <div class="input-group-btn">
