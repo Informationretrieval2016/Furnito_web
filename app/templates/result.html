@@ -4,10 +4,10 @@
 	<div class="row">
 		{% for data in datas %}
     		<div div class="col-sm-4 result-grid">
-    			<a href = "{{ url_for('result',name=data['name'])}}">
-                	<img class="img-circle img-responsive img-center" src="{{ data['img_url'][0] }}" alt="">
-                	<h4>{{data['name']}}</h4>
-                </a>
+    			  <a href = "{{ url_for('show',name=data['name'])}}">
+                <img class="img-circle img-responsive img-center" src="{{ data['img_url'][0] }}" alt="">
+                <h4>{{data['name']}}</h4>
+            </a>
                 <p>{{data['description']}}</p>
             </div>
   		{% else %}

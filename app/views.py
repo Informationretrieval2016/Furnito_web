@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from app import app
+from models import Comments, Clicks
 from common import Common
 from search import Search
 
@@ -20,11 +21,17 @@ def result():
         data = com.readJSON(furniture)
         data['name'] = data['name'].replace('_',' ')
         if len(data['description']) >= 100:
-        	data['description'] = data['description'][:100] + '...'
+            data['description'] = data['description'][:100] + '...'
         datas.append(data)
     return render_template('result.html', search_query = search_query, datas = datas)
 
-@app.route('/show')
+@app.route('/show', methods=['GET', 'POST'])
 def show():
-    commentlist = comment.query.filter_by(furniture_name = name).all()
+    name = request.args.get('name').replace(' ','_')
+    print name
+    commentlist = []
+    comments = Comments.query.filter_by(furniture_name = name).all()
+    for comment in comments:
+        commentlist.append(comment.comment)
+    return render_template('show.html', commentlist = commentlist, name = name)
 

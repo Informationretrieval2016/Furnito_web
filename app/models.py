@@ -9,7 +9,7 @@ class Comments(db.Model):
 	vote_up = db.Column(db.Integer)
 	vote_down = db.Column(db.Integer)
 
-class Click(db.Model):
+class Clicks(db.Model):
 	__tablename__ = 'clicks'
 	#Columns
 	id = db.Column(db.Integer, primary_key = True, autoincrement = True)
