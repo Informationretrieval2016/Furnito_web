@@ -1,6 +1,7 @@
 from app import db
 
 class Comments(db.Model):
+	__tablename__ = 'comments'
 	#Columns
 	id = db.Column(db.Integer, primary_key = True, autoincrement = True)
 	furniture_name = db.Column(db.String(100))
@@ -9,6 +10,7 @@ class Comments(db.Model):
 	vote_down = db.Column(db.Integer)
 
 class Click(db.Model):
+	__tablename__ = 'clicks'
 	#Columns
 	id = db.Column(db.Integer, primary_key = True, autoincrement = True)
 	furniture_one = db.Column(db.String(100))

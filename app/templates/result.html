@@ -1,4 +1,18 @@
-{% extends "layout.html" %}
+{% extends "header.html" %}
 {% block body %}
-
+<div class="container">
+	<div class="row">
+		{% for data in datas %}
+    		<div div class="col-sm-4 result-grid">
+    			<a href = "{{ url_for('result',name=data['name'])}}">
+                	<img class="img-circle img-responsive img-center" src="{{ data['img_url'][0] }}" alt="">
+                	<h4>{{data['name']}}</h4>
+                </a>
+                <p>{{data['description']}}</p>
+            </div>
+  		{% else %}
+    		Sorry, no {{search_query}} was found
+  		{% endfor %}
+  	<div>
+</div>
 {% endblock %}
