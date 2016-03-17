@@ -6,5 +6,6 @@ app.config.from_object("config")
 track_modifications = app.config.setdefault('SQLALCHEMY_TRACK_MODIFICATIONS', True)
 
 db = SQLAlchemy(app)
+app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 from app import views, models
