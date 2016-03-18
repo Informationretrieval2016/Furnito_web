@@ -1,9 +1,12 @@
 import json
+import sys
+sys.path.append('..')
+import config
 
 class Common:
 
     def __init__(self):
-        pass
+        self.json = config.json_store
 
     def IsSubString(self, SubStrList,Str): 
         '''
@@ -47,5 +50,16 @@ class Common:
         #return: data in json structure
         '''
         json_data = open(file).read()
+        data = json.loads(json_data)
+        return data
+
+    def getJSONData(self, name):
+        '''
+        #usage: get data from a json file by name
+        #arg: name of json file
+        #return: json data
+        '''
+        url = self.json + '/' + name + '.json'
+        json_data = open(url).read()
         data = json.loads(json_data)
         return data
