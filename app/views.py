@@ -3,11 +3,13 @@ from app import app
 from models import Comments, Clicks
 from common import Common
 from search import Search
+from match import Match
 import math
 
 #start view controller
 com = Common()
 search = Search()
+mth = Match()
 
 @app.route('/')
 def index():
@@ -46,10 +48,14 @@ def result(page):
 @app.route('/show', methods=['GET', 'POST'])
 def show():
     name = request.args.get('name').replace(' ','_')
-    print name
+    data = com.getJSONData(name)
+    related_data = []
     commentlist = []
     comments = Comments.query.filter_by(furniture_name = name).all()
     for comment in comments:
         commentlist.append(comment.comment)
-    return render_template('show.html', commentlist = commentlist, name = name)
+    related_list = mth.match_test()
+    for related in related_list:
+        related_data.append(com.readJSON(related))
+    return render_template('show.html', commentlist = commentlist, name = name, img_url = data['img_url'][0], description = data['description'], related_data = related_data)
 
